@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title">
+  <title>Audio server</title>
+  <rect width="128" height="128" rx="24" fill="#245575"/>
+  <g fill="none" stroke="#eef8ff" stroke-linecap="round" stroke-linejoin="round" stroke-width="5">
+    <rect x="29" y="27" width="70" height="22" rx="5"/>
+    <rect x="29" y="53" width="70" height="22" rx="5"/>
+    <rect x="29" y="79" width="70" height="22" rx="5"/>
+    <path d="M42 38h37M42 64h37M42 90h37"/>
+    <circle cx="88" cy="38" r="2" fill="#eef8ff" stroke="none"/>
+    <circle cx="88" cy="64" r="2" fill="#eef8ff" stroke="none"/>
+    <circle cx="88" cy="90" r="2" fill="#eef8ff" stroke="none"/>
+  </g>
+</svg>

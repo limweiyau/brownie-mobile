@@ -1,0 +1,276 @@
+/* Brownie × Hermes — the WhatsApp conversation, full-bleed, scroll-driven.
+   Brownie (the charm) perches on the phone; its light tells you what it's doing. */
+
+:root{
+  --col:min(100%,480px);
+  --wa-base:#e8d9ca;
+  --wa-in:#fffaf5;
+  --wa-out:#d9fdd3;
+  --wa-text:#111b21;
+  --wa-muted:#667781;
+  --wa-green:#00a884;
+  --wa-dark:#0b141a;
+  --wa-bar:#eee4da;
+  --top-h:calc(92px + env(safe-area-inset-top));
+  --input-h:calc(62px + env(safe-area-inset-bottom));
+  --sig:#22e07a;
+}
+
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html{-webkit-text-size-adjust:100%;overflow-anchor:none;scroll-padding-top:calc(var(--top-h) + 8px);scroll-padding-bottom:calc(var(--input-h) + 16px)}
+body{
+  margin:0;background:var(--wa-dark);color:var(--wa-text);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  -webkit-font-smoothing:antialiased;line-height:1.4;overflow-x:clip;
+}
+img{display:block;max-width:100%;height:auto}
+p{margin:0}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;-webkit-tap-highlight-color:transparent}
+svg{fill:currentColor}
+:focus-visible{outline:2px solid var(--wa-green);outline-offset:2px}
+
+/* ── the phone column ─────────────────────────────────────────── */
+.wa{position:relative;width:var(--col);margin:0 auto;min-height:100vh;min-height:100svh;background:var(--wa-base);box-shadow:0 0 60px rgba(0,0,0,.55)}
+
+/* ── fixed chrome ─────────────────────────────────────────────── */
+.wa-top{position:fixed;top:0;left:50%;transform:translateX(-50%);width:var(--col);z-index:30;background:var(--wa-in);box-shadow:0 1px 0 rgba(0,0,0,.08);transition:opacity .4s ease,transform .4s ease}
+.statusbar{display:flex;align-items:center;justify-content:space-between;height:calc(28px + env(safe-area-inset-top));padding:env(safe-area-inset-top) 16px 0;font-size:.74rem;font-weight:600;color:#0b141a}
+.sb-right{display:flex;align-items:center;gap:5px}
+.sb-right svg{height:11px;width:auto;color:#0b141a}
+
+.wa-header{display:flex;align-items:center;gap:8px;height:64px;padding:0 6px 0 4px}
+.hbtn{width:36px;height:36px;display:grid;place-items:center;color:#54656f;border-radius:50%}
+.hbtn svg{width:22px;height:22px}
+.back svg{width:24px;height:24px}
+.avatar{width:40px;height:40px;border-radius:50%;overflow:hidden;background:#fff;border:1px solid rgba(11,20,26,.08);display:grid;place-items:center;flex:0 0 auto}
+.avatar img{width:100%;height:100%;object-fit:cover;transform:scale(1.06)}
+.who{flex:1;min-width:0;display:flex;flex-direction:column;justify-content:center}
+.who strong,.who em{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.who strong{font-size:1rem;font-weight:600;color:#111b21;line-height:1.15}
+.who em{font-style:normal;font-size:.72rem;color:#667781}
+.hdr-icons{display:flex;align-items:center}
+
+
+/* ── the thread ───────────────────────────────────────────────── */
+.thread{
+  position:relative;
+  padding:calc(var(--top-h) + 8px) 12px calc(var(--input-h) + 18px);
+  background:var(--wa-base) url("assets/wa-pattern.svg?v=2") repeat;
+  background-size:220px 220px;
+  display:flex;flex-direction:column;gap:12px;
+  transition:padding-bottom .35s ease;
+}
+.sys{align-self:center;max-width:92%;margin:2px 0;padding:8px 12px;border-radius:8px;background:#fdf4d5;color:#54656f;font-size:.76rem;text-align:center;box-shadow:0 1px 1px rgba(0,0,0,.06)}
+.sys.small{max-width:none;background:#fff5c8;font-size:.72rem}
+.sys span{color:#1976d2}
+.date{align-self:center;margin:8px 0;padding:5px 12px;border-radius:7px;background:var(--wa-in);color:#54656f;font-size:.72rem;font-weight:500;box-shadow:0 1px 1px rgba(0,0,0,.08)}
+
+.row{position:relative;display:flex;flex-direction:column}
+.row.out{align-items:flex-end}
+.row.in{align-items:flex-start}
+
+.msg{
+  position:relative;max-width:82%;width:fit-content;
+  padding:7px 10px 8px;border-radius:9px;
+  background:var(--wa-in);color:var(--wa-text);
+  font-size:.93rem;line-height:1.42;overflow-wrap:anywhere;
+  box-shadow:0 1px 1px rgba(0,0,0,.1);
+}
+.msg p + p{margin-top:5px}
+.msg strong{font-weight:600}
+.msg.out{background:var(--wa-out)}
+.msg.in::after{content:"";position:absolute;left:-7px;bottom:0;width:0;height:0;border:7px solid transparent;border-left:0;border-right-color:var(--wa-in);border-bottom:0;border-top-width:7px}
+.msg.out::after{content:"";position:absolute;right:-7px;bottom:0;width:0;height:0;border:7px solid transparent;border-right:0;border-left-color:var(--wa-out);border-bottom:0;border-top-width:7px}
+.meta{float:right;display:inline-flex;align-items:center;gap:3px;margin:5px 0 -2px 10px;font-size:.66rem;color:#667781;white-space:nowrap}
+.ticks{width:16px;height:11px;fill:none;stroke:#53bdeb;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+
+/* typing indicator */
+.typing{display:none;position:relative;align-items:center;gap:4px;padding:13px 14px;border-radius:9px;background:var(--wa-in);box-shadow:0 1px 1px rgba(0,0,0,.1)}
+html.fx .thread > .row.waiting > .typing{display:inline-flex}
+html.fx .thread > .row:not(.arrived) > .msg{opacity:0;transform:translateY(20px)}
+html.fx .thread > .row.arrived > .msg{opacity:1;transform:none;transition:opacity .4s ease,transform .45s cubic-bezier(.2,.9,.3,1.35)}
+.typing::after{content:"";position:absolute;left:-7px;bottom:0;width:0;height:0;border:7px solid transparent;border-left:0;border-right-color:var(--wa-in);border-bottom:0;border-top-width:7px}
+.typing i{width:7px;height:7px;border-radius:50%;background:#9aa6ab;animation:dots 1.2s ease-in-out infinite}
+.typing i:nth-child(2){animation-delay:.18s}
+.typing i:nth-child(3){animation-delay:.36s}
+@keyframes dots{0%,60%,100%{transform:translateY(0);opacity:.45}30%{transform:translateY(-4px);opacity:1}}
+
+/* quick reply — WhatsApp button row */
+.quick{margin:9px -10px -8px;border-top:1px solid rgba(0,0,0,.08)}
+.quick button{display:block;width:100%;min-height:46px;padding:0 14px;color:#027eb5;font-size:.9rem;font-weight:600;transition:background .2s ease}
+.quick button:active{background:rgba(2,126,181,.09)}
+.row.done .quick{display:none}
+.row.pending{display:none}
+
+/* quiz */
+.quiz{display:flex;flex-direction:column;gap:10px}
+.quiz-card{width:min(88%,330px);padding:0;overflow:hidden}
+.quiz-head{padding:11px 12px 0;color:#111b21}
+.quiz-q{padding:5px 12px 12px;color:#111b21}
+.opts{margin-top:0;border-top:1px solid rgba(0,0,0,.08)}
+.opts button{display:block;width:100%;min-height:46px;padding:0 14px;border-bottom:1px solid rgba(0,0,0,.08);color:#027eb5;font-size:.88rem;font-weight:600;transition:background .18s ease,color .18s ease,opacity .18s ease}
+.opts button:last-child{border-bottom:0}
+.opts button:active{background:rgba(2,126,181,.1)}
+.opts button:disabled{cursor:default}
+.opts button.correct{color:#1faa59;background:rgba(31,170,89,.08)}
+.opts button.wrong{color:#d64545;background:rgba(214,69,69,.07)}
+.opts button.dim{opacity:.4}
+.quiz-card .meta{position:absolute;right:10px;bottom:6px}
+.quiz-card{position:relative;padding-bottom:22px}
+
+/* gate: nothing proceeds until "Got it!" is tapped */
+html.js .thread:not(.unlocked) [data-gate]{display:none}
+html.js .thread:not(.recall-ready) [data-recall-gate]{display:none}
+.gate-hint{display:none;align-self:center;align-items:center;gap:9px;margin:10px 0 0;padding:7px 13px;border-radius:7px;background:#fff;box-shadow:0 1px 1px rgba(0,0,0,.08);font-size:.74rem;color:#667781}
+html.js .thread:not(.unlocked) .gate-hint{display:flex}
+.gate-hint strong{color:#111b21}
+.gate-hint .tap{position:relative;flex:0 0 auto;width:18px;height:18px;border-radius:50%;border:2px solid #027eb5}
+.gate-hint .tap::after{content:"";position:absolute;left:50%;top:50%;width:5px;height:5px;margin:-2.5px 0 0 -2.5px;border-radius:50%;background:#027eb5;animation:tapdot 1.5s ease-out infinite}
+@keyframes tapdot{0%{transform:scale(.6);opacity:1}70%{transform:scale(2.8);opacity:0}100%{opacity:0}}
+html.js .thread:not(.unlocked) .quick button{animation:gatepulse 1.9s ease-in-out infinite}
+@keyframes gatepulse{0%,100%{box-shadow:0 0 0 0 rgba(2,126,181,.32)}55%{box-shadow:0 0 0 9px rgba(2,126,181,0)}}
+.row.done .gate-hint{display:none!important}
+
+/* guided learning checkpoint */
+.lesson-step{align-items:center}
+.msg.lesson-card{width:min(94%,350px);max-width:none;padding:14px;border:1px solid rgba(111,70,43,.18);border-radius:14px;background:#fff8f0;box-shadow:0 10px 28px rgba(77,48,30,.13)}
+.msg.lesson-card::after{display:none}
+.lesson-kicker{display:block;margin-bottom:5px;color:#8a5737;font-size:.66rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase}
+.lesson-card>strong{display:block;color:#3d2a1d;font-size:.96rem}
+.lesson-card>p{margin-top:4px;color:#6e5748;font-size:.8rem}
+.lesson-card button{width:100%;min-height:42px;margin-top:11px;border-radius:9px!important;background:#6f432b!important;color:#fff!important;font-size:.8rem!important;font-weight:700!important}
+.lesson-step.done .lesson-card button{display:none}
+
+/* persistent tutorial cue above the WhatsApp composer */
+.tutorial-coach{position:fixed;left:50%;bottom:calc(var(--input-h) + 10px);z-index:35;width:min(calc(100% - 24px),360px);padding:10px 13px;border:1px solid rgba(111,67,43,.2);border-radius:14px;background:rgba(255,250,245,.94);box-shadow:0 12px 30px rgba(61,42,29,.18);color:#5c4536;pointer-events:none;transform:translateX(-50%);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px)}
+.tutorial-coach>span{display:block;color:#8a5737;font-size:.6rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase}
+.tutorial-coach>strong{display:block;margin-top:2px;color:#33241a;font-size:.83rem}
+.tutorial-coach>p{margin-top:1px;font-size:.72rem;line-height:1.3}
+.tutorial-coach:not([data-step="1"]){top:calc(var(--top-h) + 8px);bottom:auto}
+.thread.coach-bottom{padding-bottom:calc(var(--input-h) + 116px)}
+
+/* gate 2: press the microphone */
+html.js .thread:not(.sent) [data-sos-gate]{display:none}
+
+.mic-hint{display:none;flex-direction:column;align-self:center;align-items:center;gap:8px;margin:8px 0;padding:10px 14px;border-radius:16px;background:rgba(255,255,255,.9);color:#54656f;font-size:.78rem;box-shadow:0 1px 1px rgba(0,0,0,.08);text-align:center}
+.mic-hint strong{color:#111b21}
+.sos-brownie{width:min(58vw,190px);aspect-ratio:1.5;padding:0;border:0;border-radius:16px;overflow:hidden;background:#fff;box-shadow:0 8px 22px rgba(11,20,26,.2);cursor:pointer;touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+.sos-brownie img{display:block;width:100%;height:100%;object-fit:cover;object-position:center}
+.sos-brownie:disabled{opacity:.72;cursor:wait}
+.audio-receiving{display:flex;align-items:center;gap:10px;min-width:190px}
+.audio-wave{display:inline-flex;align-items:center;gap:3px;height:22px}
+.audio-wave i{display:block;width:3px;height:10px;border-radius:3px;background:#00a884;transform-origin:center;animation:audioeq .8s ease-in-out infinite}
+.audio-wave i:nth-child(2){height:16px;animation-delay:.08s}
+.audio-wave i:nth-child(3){height:21px;animation-delay:.16s}
+.audio-wave i:nth-child(4){height:13px;animation-delay:.24s}
+.audio-wave i:nth-child(5){height:19px;animation-delay:.32s}
+.audio-wave i:nth-child(6){height:9px;animation-delay:.4s}
+.audio-wave i:nth-child(7){height:15px;animation-delay:.48s}
+@keyframes audioeq{0%,100%{transform:scaleY(.45);opacity:.65}50%{transform:scaleY(1);opacity:1}}
+html.js .thread.mic-ready:not(.sent) .mic-hint{display:flex}
+html.js .thread.mic-ready:not(.sent) .mic{animation:micpulse 2s ease-in-out infinite}
+@keyframes micpulse{0%,100%{box-shadow:0 0 0 0 rgba(0,168,132,.5)}55%{box-shadow:0 0 0 13px rgba(0,168,132,0)}}
+.mic.recording{background:#e5484d;animation:none;box-shadow:0 0 0 7px rgba(229,72,77,.22)}
+body.recording .wa-input{background:#ffeceb}
+body.recording .field{color:#b1525a}
+
+/* ── SOS ──────────────────────────────────────────────────────── */
+.msg.in .opts{margin:9px -10px -8px;border-top:1px solid rgba(0,0,0,.08)}
+.call-log{align-self:center;margin:6px 0;padding:5px 12px;border-radius:7px;background:#fff;color:#54656f;font-size:.74rem;box-shadow:0 1px 1px rgba(0,0,0,.08)}
+
+/* voice note — WhatsApp: play circle, waveform, duration right, then time row */
+.msg.voice{display:grid;grid-template-columns:32px 1fr;grid-template-areas:"play wave" "play meta";align-items:center;column-gap:10px;row-gap:0;min-width:198px;max-width:84%;padding:8px 10px 5px;text-align:left}
+.vplay{grid-area:play;position:relative;width:32px;height:32px;border-radius:50%;background:#54656f;transition:background .2s ease}
+.vplay::after{content:"";position:absolute;left:54%;top:50%;width:0;height:0;transform:translate(-50%,-50%);border-left:10px solid #fff;border-top:6.5px solid transparent;border-bottom:6.5px solid transparent}
+.playing .vplay::after{width:8px;height:11px;border:0;border-radius:1.5px;background:#fff}
+.wrow{grid-area:wave;display:flex;align-items:center;gap:7px;min-width:0}
+.wave{flex:1;display:flex;align-items:center;justify-content:space-between;height:24px;min-width:0}
+.wave i{width:2px;border-radius:1px;background:#8696a0;transform-origin:50% 50%}
+.playing .wave i{animation:eq .9s ease-in-out infinite;background:#54656f}
+.playing .wave i:nth-child(3n){animation-delay:.15s}
+.playing .wave i:nth-child(4n){animation-delay:.3s}
+.playing .wave i:nth-child(5n){animation-delay:.45s}
+@keyframes eq{50%{transform:scaleY(.35)}}
+.vlen{flex:0 0 auto;font-size:.7rem;color:#667781;line-height:1}
+.vmeta{grid-area:meta;display:flex;align-items:center;justify-content:flex-end;gap:5px;font-size:.66rem;color:#667781;line-height:1}
+.vmeta .ticks{width:15px;height:10px}
+
+/* ── incoming call ────────────────────────────────────────────── */
+.call{position:fixed;top:0;right:auto;bottom:0;left:50%;transform:translateX(-50%);width:var(--col);height:auto;z-index:80;display:flex;flex-direction:column;align-items:center;justify-content:space-between;padding:max(48px,env(safe-area-inset-top)) clamp(18px,7vw,48px) max(54px,calc(32px + env(safe-area-inset-bottom)));text-align:center;background:linear-gradient(180deg,#0b141a 0%,#101d26 55%,#0b141a 100%);color:#fff;overflow:hidden;touch-action:none;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
+.call-glow{position:absolute;inset:0;background:radial-gradient(62% 38% at 50% 28%,rgba(37,211,102,.2),transparent 72%);pointer-events:none}
+.call-body{position:relative;display:flex;flex-direction:column;align-items:center;gap:10px;margin:auto 0}
+.call-avatar{width:clamp(82px,22vw,112px);height:clamp(82px,22vw,112px);border-radius:50%;display:grid;place-items:center;background:linear-gradient(160deg,#4a3520,#1d1509);border:2px solid rgba(255,255,255,.18);font-size:clamp(2rem,6vw,2.5rem);font-weight:800;color:#ffd9a8;margin-bottom:6px}
+.call.ringing .call-avatar{animation:ringpulse 1.7s ease-out infinite}
+@keyframes ringpulse{0%{box-shadow:0 0 0 0 rgba(37,211,102,.55)}100%{box-shadow:0 0 0 40px transparent}}
+.call.connected .call-avatar{animation:none;box-shadow:0 0 0 6px rgba(37,211,102,.18)}
+.call-name{font-size:clamp(1.35rem,6vw,1.6rem);font-weight:700;letter-spacing:-.01em}
+.call-sub{color:rgba(255,255,255,.7);font-size:clamp(.86rem,4vw,.95rem)}
+.call-timer{font-family:ui-monospace,Menlo,monospace;font-size:1rem;letter-spacing:.06em;color:rgba(255,255,255,.85)}
+.call-controls{position:relative;width:100%}
+.ring-actions,.talk-actions{align-items:center;justify-content:center;display:flex}
+.ring-actions{gap:clamp(64px,16vw,108px)}
+.talk-actions{gap:34px}
+.call.ringing .talk-actions,.call.connected .ring-actions{display:none}
+.cbtn{position:relative;width:clamp(58px,17vw,76px);height:clamp(58px,17vw,76px);border-radius:50%;display:grid;place-items:center;color:#fff;box-shadow:0 12px 28px rgba(0,0,0,.45);transition:transform .15s ease;touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+.cbtn svg{width:clamp(26px,7vw,32px);height:clamp(26px,7vw,32px)}
+.cbtn::after{content:attr(aria-label);position:absolute;top:calc(100% + 7px);left:50%;transform:translateX(-50%);color:rgba(255,255,255,.78);font-size:.68rem;font-weight:600;white-space:nowrap}
+.cbtn:active{transform:scale(.93)}
+.cbtn.decline,.cbtn.end{background:#e5484d}
+.cbtn.accept{background:#25d366}
+.cbtn.muted,.cbtn.speaker{width:56px;height:56px;background:rgba(255,255,255,.14)}
+.cbtn.muted svg,.cbtn.speaker svg{width:24px;height:24px}
+html.in-call,body.in-call{overflow:hidden;overscroll-behavior:none}
+
+/* ── simulation cues ──────────────────────────────────────────── */
+.sys.sim{align-self:center;max-width:82%;padding:4px 9px;background:rgba(255,255,255,.72);border:1px solid rgba(84,101,111,.14);color:#718492;font-size:.68rem;font-weight:500;box-shadow:none}
+.sys.sim b{color:#5c788d;font-weight:700}
+
+/* ── input bar ────────────────────────────────────────────────── */
+.wa-input{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:var(--col);z-index:30;display:flex;align-items:center;gap:8px;padding:8px 10px calc(8px + env(safe-area-inset-bottom));background:var(--wa-bar);transition:opacity .4s ease,transform .4s ease}
+.field{flex:1;min-width:0;display:flex;align-items:center;gap:10px;height:44px;padding:0 14px;border-radius:22px;background:#fff;color:#8696a0;font-size:.92rem}
+.field .emoji{flex:0 0 auto;width:24px;height:24px;color:#54656f}
+.field .ph{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.wa-input .ic{width:26px;height:26px;color:#54656f;flex:0 0 auto}
+.mic{width:46px;height:46px;border-radius:50%;display:grid;place-items:center;background:var(--wa-green);color:#fff;flex:0 0 auto}
+.mic svg{width:24px;height:24px}
+
+/* hide chrome when the story leaves the chat */
+body.chat-over .wa-top{opacity:0;transform:translateX(-50%) translateY(-12px);pointer-events:none}
+body.chat-over .wa-input{opacity:0;transform:translateX(-50%) translateY(16px);pointer-events:none}
+
+html.fallback .msg{opacity:1!important;visibility:visible!important}
+
+/* ── other phone sizes ────────────────────────────────────────── */
+@media (max-width:400px){
+  .wa-header{gap:6px}
+  .hbtn{width:34px;height:34px}
+  .msg{max-width:86%}
+  .msg.voice{min-width:186px}
+  .quiz-card{width:min(90%,320px)}
+}
+@media (max-width:340px){
+  :root{--top-h:calc(88px + env(safe-area-inset-top))}
+  .wa-header{height:60px;gap:4px}
+  .avatar{width:36px;height:36px}
+  .who strong{font-size:.95rem}
+  .hdr-icons .hbtn[aria-label="Video call"]{display:none}
+  .msg{font-size:.9rem;max-width:90%}
+  .msg.voice{min-width:168px;grid-template-columns:30px 1fr}
+  .vplay{width:30px;height:30px}
+  .quiz-card{width:96%}
+  .call{padding-left:18px;padding-right:18px}
+  .cbtn{width:58px;height:58px}
+  .ring-actions{gap:64px}
+}
+@media (max-height:640px){
+  .call{padding-top:max(8vh,env(safe-area-inset-top));padding-bottom:max(54px,calc(24px + env(safe-area-inset-bottom)))}
+  .call-avatar{width:84px;height:84px;font-size:2rem}
+}
+@media (min-width:520px) and (min-height:760px){
+  .wa{border-left:1px solid rgba(255,255,255,.06);border-right:1px solid rgba(255,255,255,.06)}
+}
+
+@media (prefers-reduced-motion: reduce){
+  .typing i,.playing .wave i,.tutorial-coach{animation:none}
+}

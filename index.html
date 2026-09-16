@@ -1,0 +1,276 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#ffffff">
+  <title>Brownie — Your 24/7 AI Companion</title>
+  <meta name="description" content="Meet Brownie, a private AI companion for reminders, reassurance and real human support.">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%230b42df'/%3E%3Ccircle cx='32' cy='32' r='19' fill='white'/%3E%3Ccircle cx='25' cy='29' r='3' fill='%230b42df'/%3E%3Ccircle cx='39' cy='29' r='3' fill='%230b42df'/%3E%3Cpath d='M24 39q8 6 16 0' fill='none' stroke='%230b42df' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="style.css?v=91">
+  <link rel="stylesheet" href="chat.css?v=11">
+</head>
+<body>
+  <header class="nav">
+    <a class="logo" href="#top"><img src="assets/logo-tamtam.png" alt=""><strong>Brownie</strong></a>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow">24/7 AI Companion</p>
+        <h1>Meet<br>Brownie.</h1>
+        <p class="hero-lead">Brownie listens, remembers and gets a real person when you need one.</p>
+        <a class="start-link" href="#experience">See a real scenario <span>↘</span></a>
+      </div>
+      <div class="hero-product" aria-label="Brownie companion on a phone">
+        <div class="blue-disc"></div>
+        <img src="assets/brownie-phone-cutout.png" alt="Brownie companion perched on a phone">
+      </div>
+    </section>
+
+    <section class="experience" id="experience" aria-label="Brownie SOS demonstration">
+      <div class="experience-frame">
+        <div class="experience-inner">
+          <aside class="story-side">
+            <p class="eyebrow">Just talk</p>
+            <div class="story-titles" aria-live="polite">
+              <div class="story-title active" data-title="0"><span>01</span><h2>Meet Brownie.</h2><p>Start with a simple reminder.</p></div>
+              <div class="story-title" data-title="1"><span>02</span><h2>Ask anything.</h2><p>Addresses, reminders and answers.</p></div>
+              <div class="story-title" data-title="2"><span>03</span><h2>One press.</h2><p>Press Brownie. Say what you need.</p></div>
+              <div class="story-title" data-title="3"><span>04</span><h2>Human help.</h2><p>Brownie reaches Joey instantly.</p></div>
+            </div>
+            <div class="step-meter" aria-hidden="true"><i class="active"></i><i></i><i></i><i></i></div>
+          </aside>
+
+          <div class="chat-stage">
+                        <div class="chat-window js" style="--expand:0">
+              <div class="wa">
+                <header class="wa-top" id="waTop">
+                  <div class="statusbar">
+                    <time id="statusTime">10:30</time>
+                    <span class="sb-right" aria-hidden="true">
+                      <svg viewBox="0 0 18 12"><path d="M1 11h3V6H1zM6 11h3V3H6zM11 11h3V1h-3z"/></svg>
+                      <svg viewBox="0 0 20 14"><path d="M10 12.6l-2.2-2.3a3.1 3.1 0 014.4 0zM10 7.6a6 6 0 00-4.3 1.8L4 7.6a8.5 8.5 0 0112 0l-1.7 1.8A6 6 0 0010 7.6zM10 2.6a11 11 0 00-7.8 3.2L.5 4.1a13.5 13.5 0 0119 0l-1.7 1.7A11 11 0 0010 2.6z"/></svg>
+                      <svg viewBox="0 0 26 13"><rect x=".5" y=".5" width="21" height="12" rx="3.2" fill="none" stroke="#0b141a" stroke-opacity=".4"/><rect x="2" y="2" width="15" height="9" rx="1.8"/><rect x="23" y="4" width="2" height="5" rx="1" fill="#0b141a" fill-opacity=".4"/></svg>
+                    </span>
+                  </div>
+                  <div class="wa-header">
+                    <button class="hbtn back" type="button" aria-label="Back"><svg viewBox="0 0 24 24"><path d="M20 11H7.8l5.6-5.6L12 4l-8 8 8 8 1.4-1.4L7.8 13H20z"/></svg></button>
+                    <span class="avatar"><img src="assets/mascot.png" alt="Brownie" width="360" height="360" /></span>
+                    <span class="who"><strong>Brownie</strong><em>AI Companion</em></span>
+                    <span class="hdr-icons">
+                      <button class="hbtn" type="button" aria-label="Video call"><svg viewBox="0 0 24 24"><path d="M17 10.5V7a2 2 0 00-2-2H4a2 2 0 00-2 2v10a2 2 0 002 2h11a2 2 0 002-2v-3.5l5 4V6.5z"/></svg></button>
+                      <button class="hbtn" type="button" aria-label="Call"><svg viewBox="0 0 24 24"><path d="M6.6 10.8a15 15 0 006.6 6.6l2.2-2.2a1 1 0 011-.2 11 11 0 003.4.6 1 1 0 011 1V20a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.4a1 1 0 011 1 11 11 0 00.6 3.4 1 1 0 01-.2 1z"/></svg></button>
+                      <button class="hbtn" type="button" aria-label="Menu"><svg viewBox="0 0 24 24"><circle cx="12" cy="5" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="12" cy="19" r="2"/></svg></button>
+                    </span>
+                  </div>
+                </header>
+
+                <main class="thread" id="thread">
+                  <p class="sys sim"><b>Simulation</b> · scripted interaction</p>
+                  <p class="sys">🔒 Messages and calls are end-to-end encrypted. Only people in this chat can read, listen to, or share them. <span>Learn more</span></p>
+                  <p class="date">Today</p>
+
+                  <div class="row in" data-clock="8:48" data-sig="listen">
+                    <span class="typing" aria-hidden="true"><i></i><i></i><i></i></span>
+                    <div class="msg in"><p>Hey Tiong Guan!</p><span class="meta">8:48 AM</span></div>
+                  </div>
+
+                  <div class="row in" data-sig="remind">
+                    <span class="typing" aria-hidden="true"><i></i><i></i><i></i></span>
+                    <div class="msg in">
+                      <p><strong>Just a little reminder:</strong> Time to take your medication.</p>
+                      <p>Stay consistent and take care!</p>
+                      <span class="meta">8:48 AM</span>
+                      <div class="quick"><button type="button" data-gotit>Got it!</button></div>
+                    </div>
+                  </div>
+
+                  <div class="row out pending" id="gotitRow">
+                    <div class="msg out"><p>Got it!</p><span class="meta">8:49 AM <svg class="ticks" viewBox="0 0 16 11"><path d="M1.2 5.8l3 3L11 1.8"/><path d="M6.4 8.4l.9.9L15 1.8"/></svg></span></div>
+                  </div>
+
+                  <div class="row out" data-gate data-clock="10:16" style="order:0">
+                    <div class="msg out"><p>What is my work address?</p><span class="meta">10:16 AM <svg class="ticks" viewBox="0 0 16 11"><path d="M1.2 5.8l3 3L11 1.8"/><path d="M6.4 8.4l.9.9L15 1.8"/></svg></span></div>
+                  </div>
+
+                  <div class="row in" data-gate data-sig="listen" data-think id="addressRow">
+                    <span class="typing" aria-hidden="true"><i></i><i></i><i></i></span>
+                    <div class="msg in">
+                      <p><strong>Address:</strong></p>
+                      <p>Singapore Management University<br>81 Victoria St, Singapore 188065</p>
+                      <span class="meta">10:16 AM</span>
+                    </div>
+                  </div>
+
+                  <div class="row lesson-step" data-gate id="recallLesson">
+                    <div class="msg lesson-card">
+                      <span class="lesson-kicker">Memory check</span>
+                      <strong>Brownie recalled saved information.</strong>
+                      <p>Your work address was ready when you asked.</p>
+                      <button type="button" data-recall-continue>Continue to safety practice</button>
+                    </div>
+                  </div>
+
+                  <p class="date" data-gate data-recall-gate>Daily Quiz</p>
+
+                  <div class="row in" data-gate data-recall-gate data-sig="listen">
+                    <span class="typing" aria-hidden="true"><i></i><i></i><i></i></span>
+                    <div class="msg in"><p>Ready for a safety challenge?</p><span class="meta">9:15 AM</span></div>
+                  </div>
+
+                  <div class="quiz" data-gate data-recall-gate data-answer="Walk away and call staff">
+                    <div class="row in">
+                      <div class="msg in quiz-card">
+                        <p class="quiz-head">🛡️ <strong>Safety Choice</strong></p>
+                        <p class="quiz-q">A stranger asks you to go with them. What do you do?</p>
+                        <div class="opts">
+                          <button type="button" data-opt>Go with them</button>
+                          <button type="button" data-opt>Walk away and call staff</button>
+                          <button type="button" data-opt>Ignore it</button>
+                        </div>
+                        <span class="meta">9:15 AM</span>
+                      </div>
+                    </div>
+                    <div class="row out" data-ans hidden><div class="msg out"><span class="meta">9:16 AM <svg class="ticks" viewBox="0 0 16 11"><path d="M1.2 5.8l3 3L11 1.8"/><path d="M6.4 8.4l.9.9L15 1.8"/></svg></span></div></div>
+                    <div class="row in" data-good hidden><div class="msg in"><p><strong>✅ Correct!</strong> Walk away and call trusted staff.</p></div></div>
+                    <div class="row in" data-bad hidden><div class="msg in"><p><strong>Not quite.</strong> Walk away and call trusted staff.</p></div></div>
+                    <div class="row in" data-ptsgood hidden><div class="msg in"><p>Points: <strong>+10</strong> · Quiz complete 🎉</p></div></div>
+                    <div class="row in" data-ptsbad hidden><div class="msg in"><p>Points: <strong>+0</strong> · Quiz complete</p></div></div>
+                  </div>
+
+                  <div class="mic-hint" data-gate>
+                    <button class="sos-brownie" id="sosBrownie" type="button" aria-label="Tap Brownie and say I need help"><img src="assets/brownie-button.jpg" alt="Tap Brownie"></button>
+                    <span>Tap Brownie and say <strong>&ldquo;I need help&rdquo;</strong></span>
+                  </div>
+
+                  <div class="row in" data-gate data-manual data-clock="10:18" id="audioReceivingRow" hidden>
+                    <div class="msg in audio-receiving" role="status" aria-label="Receiving audio"><span>🎙️ Receiving audio</span><span class="audio-wave" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span></div>
+                  </div>
+
+                  <div class="row in" data-gate data-manual data-clock="10:18" id="youSaidRow" hidden>
+                    <div class="msg in"><p>You said: <strong>&ldquo;I need help&rdquo;</strong>.</p><span class="meta">10:18 AM</span></div>
+                  </div>
+
+                  <div class="row in" data-gate data-sos-gate data-think data-sig="sos" data-clock="10:18" id="contactingRow">
+                    <span class="typing" aria-hidden="true"><i></i><i></i><i></i></span>
+                    <div class="msg in"><p>Contacting Joey right now…</p><span class="meta">10:18 AM</span></div>
+                  </div>
+                </main>
+
+                <div class="wa-input" id="waInput" aria-hidden="true">
+                  <span class="field"><svg class="emoji" viewBox="0 0 24 24"><path d="M12 2a10 10 0 100 20 10 10 0 000-20zm0 18a8 8 0 110-16 8 8 0 010 16zm-3.5-9a1.5 1.5 0 100-3 1.5 1.5 0 000 3zm7 0a1.5 1.5 0 100-3 1.5 1.5 0 000 3zM12 17.5c2.3 0 4.3-1.5 5-3.5H7c.7 2 2.7 3.5 5 3.5z"/></svg><span class="ph">Message Brownie…</span></span>
+                  <svg class="ic" viewBox="0 0 24 24"><path d="M16.5 6.5l-7.8 7.8a2.5 2.5 0 003.5 3.5l8.5-8.5a4.5 4.5 0 10-6.4-6.4L5.6 11.6a6.5 6.5 0 009.2 9.2l6.4-6.4-1.4-1.4-6.4 6.4a4.5 4.5 0 11-6.4-6.4l8.7-8.7a2.5 2.5 0 013.5 3.5l-8.5 8.5a.5.5 0 11-.7-.7l7.8-7.8z"/></svg>
+                  <svg class="ic" viewBox="0 0 24 24"><path d="M9 3l-1.5 2H5a2 2 0 00-2 2v11a2 2 0 002 2h14a2 2 0 002-2V7a2 2 0 00-2-2h-2.5L15 3zm3 5a5 5 0 110 10 5 5 0 010-10zm0 2a3 3 0 100 6 3 3 0 000-6z"/></svg>
+                  <button class="mic" id="mic" type="button" aria-label="Press the microphone"><svg viewBox="0 0 24 24"><path d="M12 14a3 3 0 003-3V6a3 3 0 10-6 0v5a3 3 0 003 3zm5-3a5 5 0 01-4 4.9V19h3v2H8v-2h3v-3.1A5 5 0 016 11h2a4 4 0 108 0z"/></svg></button>
+                </div>
+              </div>
+
+              <div class="call ringing" id="call" hidden role="dialog" aria-modal="true" aria-label="Incoming call from Joey" aria-hidden="true">
+                <div class="call-glow"></div>
+                <div class="call-body">
+                  <span class="call-avatar">J</span>
+                  <p class="call-name">Joey</p>
+                  <p class="call-sub" id="callSub">Simulated incoming call…</p>
+                  <p class="call-timer" id="callTimer" hidden>00:00</p>
+                </div>
+                <div class="call-controls">
+                  <div class="ring-actions">
+                    <button class="cbtn decline" type="button" data-call-decline aria-label="Decline call">
+                      <svg viewBox="0 0 24 24"><path transform="rotate(135 12 12)" d="M6.6 10.8a15 15 0 006.6 6.6l2.2-2.2a1 1 0 011-.2 11 11 0 003.4.6 1 1 0 011 1V20a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.4a1 1 0 011 1 11 11 0 00.6 3.4 1 1 0 01-.2 1z"/></svg>
+                    </button>
+                    <button class="cbtn accept" type="button" data-call-accept aria-label="Answer call">
+                      <svg viewBox="0 0 24 24"><path d="M6.6 10.8a15 15 0 006.6 6.6l2.2-2.2a1 1 0 011-.2 11 11 0 003.4.6 1 1 0 011 1V20a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.4a1 1 0 011 1 11 11 0 00.6 3.4 1 1 0 01-.2 1z"/></svg>
+                    </button>
+                  </div>
+                  <div class="talk-actions">
+                    <button class="cbtn muted" type="button" aria-label="Mute"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 14a3 3 0 003-3V6a3 3 0 10-6 0v5a3 3 0 003 3zm5-3h2a7 7 0 01-2.1 5l-1.4-1.4A5 5 0 0017 11zM7.1 16A7 7 0 015 11h2a5 5 0 001.5 3.6zM11 18.9V21H8v-2h2.2zM16 19v2h-3v-2z"/><path d="M4 4l16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+                    <button class="cbtn speaker" type="button" aria-label="Speaker"><svg viewBox="0 0 24 24"><path d="M4 9v6h4l5 4V5L8 9zm12.5 3a3.5 3.5 0 00-2-3.2v6.4a3.5 3.5 0 002-3.2zm-2-7.6v2.1a5.5 5.5 0 010 11v2.1a7.5 7.5 0 000-15.2z"/></svg></button>
+                    <button class="cbtn end" type="button" data-call-end aria-label="End call">
+                      <svg viewBox="0 0 24 24"><path transform="rotate(135 12 12)" d="M6.6 10.8a15 15 0 006.6 6.6l2.2-2.2a1 1 0 011-.2 11 11 0 003.4.6 1 1 0 011 1V20a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.4a1 1 0 011 1 11 11 0 00.6 3.4 1 1 0 01-.2 1z"/></svg>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="scroll-track" aria-hidden="true"></div>
+    </section>
+
+    <section class="architecture" id="architecture" aria-labelledby="arch-title">
+      <div class="arch-head">
+        <h2 id="arch-title">Tech Stack.</h2>
+      </div>
+
+      <div class="arch-spot gb10-spot" data-gb10>
+         <div class="gb10-product">
+           <div class="gb10-product-head"><strong>Dell Pro Max with GB10</strong></div>
+           <img class="gb10-device" src="assets/gb10-device.png" alt="Dell Pro Max with GB10" decoding="async">
+         </div>
+       </div>
+
+      <div class="tech-stack" aria-labelledby="tech-stack-title">
+        <div class="tech-clusters">
+          <section class="tech-cluster messaging" aria-labelledby="messaging-title">
+            <div class="tech-cluster-head"><strong id="messaging-title">Messaging</strong></div>
+            <div class="tech-cluster-items">
+              <div class="tech-chip"><img class="tech-logo whatsapp" src="assets/logo-whatsapp.png" alt=""><strong>WhatsApp</strong></div>
+              <div class="tech-chip"><div class="tech-mark brownie"><img src="assets/logo-tamtam.png" alt=""></div><strong>Brownie</strong></div>
+            </div>
+          </section>
+          <section class="tech-cluster gb10-stack" aria-labelledby="gb10-stack-title">
+            <div class="tech-cluster-head"><strong id="gb10-stack-title">GB10</strong></div>
+            <div class="tech-cluster-items">
+              <div class="tech-chip"><div class="tech-mark hermes"><img src="assets/logo-hermes.png" alt=""></div><strong>Hermes</strong></div>
+              <div class="tech-chip"><div class="tech-mark qwen"><img src="assets/logo-qwen.png" alt=""></div><strong>Qwen</strong></div>
+              <div class="tech-chip"><div class="tech-mark meralion"><img src="assets/logo-meralion-mark.png" alt=""></div><strong>Meralion</strong></div>
+              <div class="tech-chip"><div class="tech-mark kokoro"><img src="assets/logo-kokoro-mark.png" alt=""></div><strong>Kokoro</strong></div>
+            </div>
+          </section>
+          <section class="tech-cluster platform" aria-labelledby="openshift-title">
+            <div class="tech-cluster-head"><strong id="openshift-title">OpenShift</strong></div>
+            <div class="tech-cluster-items">
+              <div class="tech-chip"><div class="tech-mark generic"><img src="assets/icon-mcp-tools.svg" alt=""></div><strong>MCP tools</strong></div>
+              <div class="tech-chip"><div class="tech-mark generic"><img src="assets/icon-audio-server.svg" alt=""></div><strong>Audio Server</strong></div>
+            </div>
+          </section>
+        </div>
+      </div>
+    </section>
+
+    <section class="charm" id="charm" aria-labelledby="charm-title">
+      <div class="charm-copy">
+        <h2 id="charm-title">Small charm.<br>Big reassurance.</h2>
+      </div>
+      <div class="charm-stage">
+        <div id="charm3d"></div>
+        <p class="charm-loading" id="charmLoading">Loading the charm…</p>
+      </div>
+    </section>
+
+    <section class="mini-game" aria-labelledby="check-title">
+      <div class="game-copy"><h2 id="check-title">Want to meet Brownie?</h2></div>
+      <div class="quiz-card">
+        <div class="quiz-count">ONE QUICK CHECK <span>1 / 1</span></div>
+        <div class="quiz-options">
+          <button type="button" data-correct="true"><span>A</span>Visit us at the SMU booth!</button>
+          <button type="button"><span>B</span>Wait until next year</button>
+          <button type="button"><span>C</span>Ask a carrier pigeon</button>
+        </div>
+      </div>
+    </section>
+
+    <footer><img src="assets/logo-tamtam.png" alt="Brownie"><h2>A friend<br>for life.</h2><p>Private. Present. One press away.</p><a href="#top">Back to top ↑</a></footer>
+  </main>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+  <script type="importmap">
+    {"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}
+  </script>
+  <script type="module" src="charm.js?v=2" onerror="document.getElementById('charmLoading').textContent='The 3D charm could not load.'"></script>
+  <script src="app.js?v=92"></script>
+  <script src="tutorial.js?v=3"></script>
+</body>
+</html>
