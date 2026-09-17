@@ -104,7 +104,7 @@ if (stage && host) {
     const draco = new DRACOLoader();
     draco.setDecoderPath('https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/libs/draco/');
     gltfLoader.setDRACOLoader(draco);
-    gltfLoader.load('assets/otter-charm.glb?v=2', (gltf) => {
+    gltfLoader.load('assets/otter-charm.glb?v=3', (gltf) => {
       place(gltf.scene);
     }, undefined, () => new STLLoader().load('assets/otter-charm.stl', (geo) => {
       const mesh = new THREE.Mesh(geo, new THREE.MeshStandardMaterial({ color: 0xb06a3c, roughness: .55, metalness: .06 }));
