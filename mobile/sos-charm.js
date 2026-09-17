@@ -1,5 +1,6 @@
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+import { DRACOLoader } from 'three/addons/loaders/DRACOLoader.js';
 import { STLLoader } from 'three/addons/loaders/STLLoader.js';
 
 // 3D Brownie charm inside the SOS button (mobile demo). Replaces the flat
@@ -53,7 +54,11 @@ if (host) {
       });
     };
 
-    new GLTFLoader().load('../assets/otter-charm.glb', (gltf) => {
+    const gltfLoader = new GLTFLoader();
+    const draco = new DRACOLoader();
+    draco.setDecoderPath('https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/libs/draco/');
+    gltfLoader.setDRACOLoader(draco);
+    gltfLoader.load('../assets/otter-charm.glb?v=2', (gltf) => {
       place(gltf.scene);
     }, undefined, () => new STLLoader().load('../assets/otter-charm.stl', (geo) => {
       place(new THREE.Mesh(geo, new THREE.MeshStandardMaterial({ color: 0xb06a3c, roughness: .55, metalness: .06 })));

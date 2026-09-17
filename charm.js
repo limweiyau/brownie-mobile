@@ -2,6 +2,7 @@ import * as THREE from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { STLLoader } from 'three/addons/loaders/STLLoader.js';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+import { DRACOLoader } from 'three/addons/loaders/DRACOLoader.js';
 
 const stage = document.querySelector('.charm-stage');
 const host = document.getElementById('charm3d');
@@ -99,7 +100,11 @@ if (stage && host) {
       onScreen(true);
     };
 
-    new GLTFLoader().load('assets/otter-charm.glb', (gltf) => {
+    const gltfLoader = new GLTFLoader();
+    const draco = new DRACOLoader();
+    draco.setDecoderPath('https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/libs/draco/');
+    gltfLoader.setDRACOLoader(draco);
+    gltfLoader.load('assets/otter-charm.glb?v=2', (gltf) => {
       place(gltf.scene);
     }, undefined, () => new STLLoader().load('assets/otter-charm.stl', (geo) => {
       const mesh = new THREE.Mesh(geo, new THREE.MeshStandardMaterial({ color: 0xb06a3c, roughness: .55, metalness: .06 }));
