@@ -1,6 +1,5 @@
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
-import { STLLoader } from 'three/addons/loaders/STLLoader.js';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { DRACOLoader } from 'three/addons/loaders/DRACOLoader.js';
 
@@ -102,14 +101,11 @@ if (stage && host) {
 
     const gltfLoader = new GLTFLoader();
     const draco = new DRACOLoader();
-    draco.setDecoderPath('https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/libs/draco/');
+    draco.setDecoderPath('./vendor/three/libs/draco/');
     gltfLoader.setDRACOLoader(draco);
     gltfLoader.load('assets/otter-charm.glb?v=6', (gltf) => {
       place(gltf.scene);
-    }, undefined, () => new STLLoader().load('assets/otter-charm.stl', (geo) => {
-      const mesh = new THREE.Mesh(geo, new THREE.MeshStandardMaterial({ color: 0xb06a3c, roughness: .55, metalness: .06 }));
-      place(mesh);
-    }, undefined, () => fail('The charm could not be loaded.')));
+    }, undefined, () => fail('The charm could not be loaded.'));
     setTimeout(() => fail('The 3D charm is taking too long to load.'), 10000);
   }
 }

@@ -22,7 +22,7 @@
       </div>
       <div class="wa-header">
         <button class="hbtn back" type="button" aria-label="Back"><svg viewBox="0 0 24 24"><path d="M20 11H7.8l5.6-5.6L12 4l-8 8 8 8 1.4-1.4L7.8 13H20z"/></svg></button>
-        <span class="avatar"><img src="assets/mascot.webp" onerror="this.onerror=null;this.src='assets/mascot.png'" alt="Brownie" width="360" height="360" /></span>
+        <span class="avatar"><img src="assets/mascot.webp" alt="Brownie" width="360" height="360" /></span>
         <span class="who"><strong>Brownie</strong><em>AI Companion</em></span>
         <span class="hdr-icons">
           <button class="hbtn" type="button" aria-label="Video call"><svg viewBox="0 0 24 24"><path d="M17 10.5V7a2 2 0 00-2-2H4a2 2 0 00-2 2v10a2 2 0 002 2h11a2 2 0 002-2v-3.5l5 4V6.5z"/></svg></button>
@@ -107,7 +107,7 @@
       </div>
 
       <div class="mic-hint" data-gate>
-        <button class="sos-brownie" id="sosBrownie" type="button" aria-label="Tap Brownie and say I need help"><img src="../assets/brownie-button.webp" onerror="this.onerror=null;this.src='../assets/brownie-button.jpg'" alt="Tap Brownie"><span class="sos3d" id="sos3d" aria-hidden="true"></span></button>
+        <button class="sos-brownie" id="sosBrownie" type="button" aria-label="Tap Brownie and say I need help"><img src="../assets/brownie-button.webp" alt="Tap Brownie"><span class="sos3d" id="sos3d" aria-hidden="true"></span></button>
         <span>Tap Brownie and say <strong>&ldquo;I need help&rdquo;</strong></span>
       </div>
 
@@ -162,12 +162,12 @@
     </div>
   </div>
 
-  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
+  <script src="../vendor/gsap.min.js"></script>
+  <script src="../vendor/ScrollTrigger.min.js"></script>
   <script type="importmap">
-    {"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}
+    {"imports":{"three":"../vendor/three/three.module.js","three/addons/":"../vendor/three/addons/"}}
   </script>
-  <script type="module" src="sos-charm.js?v=6"></script>
+  <script type="module" src="sos-charm.js?v=7"></script>
   <script src="mobile.js?v=9"></script>
   <script src="../tutorial.js?v=4"></script>
 </body>

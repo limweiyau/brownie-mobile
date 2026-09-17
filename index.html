@@ -12,7 +12,7 @@
 </head>
 <body>
   <header class="nav">
-    <a class="logo" href="#top"><img src="assets/logo-tamtam.webp" onerror="this.onerror=null;this.src='assets/logo-tamtam.png'" alt=""><strong>Brownie</strong></a>
+    <a class="logo" href="#top"><img src="assets/logo-tamtam.webp" alt=""><strong>Brownie</strong></a>
   </header>
 
   <main id="top">
@@ -25,7 +25,7 @@
       </div>
       <div class="hero-product" aria-label="Brownie companion on a phone">
         <div class="blue-disc"></div>
-        <img src="assets/brownie-phone-cutout.webp" onerror="this.onerror=null;this.src='assets/brownie-phone-cutout.png'" alt="Brownie companion perched on a phone">
+        <img src="assets/brownie-phone-cutout.webp" alt="Brownie companion perched on a phone">
       </div>
     </section>
 
@@ -57,7 +57,7 @@
                   </div>
                   <div class="wa-header">
                     <button class="hbtn back" type="button" aria-label="Back"><svg viewBox="0 0 24 24"><path d="M20 11H7.8l5.6-5.6L12 4l-8 8 8 8 1.4-1.4L7.8 13H20z"/></svg></button>
-                    <span class="avatar"><img src="assets/mascot.webp" onerror="this.onerror=null;this.src='assets/mascot.png'" alt="Brownie" width="360" height="360" /></span>
+                    <span class="avatar"><img src="assets/mascot.webp" alt="Brownie" width="360" height="360" /></span>
                     <span class="who"><strong>Brownie</strong><em>AI Companion</em></span>
                     <span class="hdr-icons">
                       <button class="hbtn" type="button" aria-label="Video call"><svg viewBox="0 0 24 24"><path d="M17 10.5V7a2 2 0 00-2-2H4a2 2 0 00-2 2v10a2 2 0 002 2h11a2 2 0 002-2v-3.5l5 4V6.5z"/></svg></button>
@@ -141,7 +141,7 @@
                   </div>
 
                   <div class="mic-hint" data-gate>
-                    <button class="sos-brownie" id="sosBrownie" type="button" aria-label="Tap Brownie and say I need help"><img src="assets/brownie-button.webp" onerror="this.onerror=null;this.src='assets/brownie-button.jpg'" alt="Tap Brownie"></button>
+                    <button class="sos-brownie" id="sosBrownie" type="button" aria-label="Tap Brownie and say I need help"><img src="assets/brownie-button.webp" alt="Tap Brownie"></button>
                     <span>Tap Brownie and say <strong>&ldquo;I need help&rdquo;</strong></span>
                   </div>
 
@@ -208,7 +208,7 @@
       <div class="arch-spot gb10-spot" data-gb10>
          <div class="gb10-product">
            <div class="gb10-product-head"><strong>Dell Pro Max with GB10</strong></div>
-           <img class="gb10-device" src="assets/gb10-device.webp" onerror="this.onerror=null;this.src='assets/gb10-device.png'" alt="Dell Pro Max with GB10" decoding="async">
+           <img class="gb10-device" src="assets/gb10-device.webp" alt="Dell Pro Max with GB10" decoding="async">
          </div>
        </div>
 
@@ -218,14 +218,14 @@
             <div class="tech-cluster-head"><strong id="messaging-title">Messaging</strong></div>
             <div class="tech-cluster-items">
               <div class="tech-chip"><img class="tech-logo whatsapp" src="assets/logo-whatsapp.png" alt=""><strong>WhatsApp</strong></div>
-              <div class="tech-chip"><div class="tech-mark brownie"><img src="assets/logo-tamtam.webp" onerror="this.onerror=null;this.src='assets/logo-tamtam.png'" alt=""></div><strong>Brownie</strong></div>
+              <div class="tech-chip"><div class="tech-mark brownie"><img src="assets/logo-tamtam.webp" alt=""></div><strong>Brownie</strong></div>
             </div>
           </section>
           <section class="tech-cluster gb10-stack" aria-labelledby="gb10-stack-title">
             <div class="tech-cluster-head"><strong id="gb10-stack-title">GB10</strong></div>
             <div class="tech-cluster-items">
               <div class="tech-chip"><div class="tech-mark hermes"><img src="assets/logo-hermes.png" alt=""></div><strong>Hermes</strong></div>
-              <div class="tech-chip"><div class="tech-mark qwen"><img src="assets/logo-qwen.webp" onerror="this.onerror=null;this.src='assets/logo-qwen.png'" alt=""></div><strong>Qwen</strong></div>
+              <div class="tech-chip"><div class="tech-mark qwen"><img src="assets/logo-qwen.webp" alt=""></div><strong>Qwen</strong></div>
               <div class="tech-chip"><div class="tech-mark meralion"><img src="assets/logo-meralion-mark.png" alt=""></div><strong>Meralion</strong></div>
               <div class="tech-chip"><div class="tech-mark kokoro"><img src="assets/logo-kokoro-mark.png" alt=""></div><strong>Kokoro</strong></div>
             </div>
@@ -263,13 +263,13 @@
       </div>
     </section>
 
-    <footer><img src="assets/logo-tamtam.webp" onerror="this.onerror=null;this.src='assets/logo-tamtam.png'" alt="Brownie"><h2>A friend<br>for life.</h2><p>Private. Present. One press away.</p><a href="#top">Back to top ↑</a></footer>
+    <footer><img src="assets/logo-tamtam.webp" alt="Brownie"><h2>A friend<br>for life.</h2><p>Private. Present. One press away.</p><a href="#top">Back to top ↑</a></footer>
   </main>
-  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+  <script src="vendor/gsap.min.js"></script>
   <script type="importmap">
-    {"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}
+    {"imports":{"three":"./vendor/three/three.module.js","three/addons/":"./vendor/three/addons/"}}
   </script>
-  <script type="module" src="charm.js?v=8" onerror="document.getElementById('charmLoading').textContent='The 3D charm could not load.'"></script>
+  <script type="module" src="charm.js?v=9" onerror="document.getElementById('charmLoading').textContent='The 3D charm could not load.'"></script>
   <script src="app.js?v=96"></script>
   <script src="tutorial.js?v=4"></script>
 </body>

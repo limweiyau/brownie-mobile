@@ -1,7 +1,6 @@
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { DRACOLoader } from 'three/addons/loaders/DRACOLoader.js';
-import { STLLoader } from 'three/addons/loaders/STLLoader.js';
 
 // 3D Brownie charm inside the SOS button (mobile demo). Replaces the flat
 // brownie-button.jpg look with the real model: brown body, black eyes,
@@ -48,21 +47,27 @@ if (host) {
       obj.position.copy(box.getCenter(new THREE.Vector3())).negate();
       resize();
       host.previousElementSibling?.remove();   // drop the flat jpg once 3D is live
-      renderer.setAnimationLoop(() => {
-        group.rotation.z += .008;
+      // 30fps cap + pause when offscreen: full-rate spin eats phone battery
+      let last = 0;
+      let running = true;
+      new IntersectionObserver(([e]) => { running = e.isIntersecting; }, { threshold: .05 })
+        .observe(host.closest('button') || host);
+      renderer.setAnimationLoop((t) => {
+        if (!running) return;
+        if (t - last < 33) return;
+        last = t;
+        group.rotation.z += .016;
         renderer.render(scene, camera);
       });
     };
 
     const gltfLoader = new GLTFLoader();
     const draco = new DRACOLoader();
-    draco.setDecoderPath('https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/libs/draco/');
+    draco.setDecoderPath('../vendor/three/libs/draco/');
     gltfLoader.setDRACOLoader(draco);
     gltfLoader.load('../assets/otter-charm.glb?v=6', (gltf) => {
       place(gltf.scene);
-    }, undefined, () => new STLLoader().load('../assets/otter-charm.stl', (geo) => {
-      place(new THREE.Mesh(geo, new THREE.MeshStandardMaterial({ color: 0xb06a3c, roughness: .55, metalness: .06 })));
-    }));
+    }, undefined, () => host.remove());   // GLB missing: keep the flat jpg
 
     addEventListener('resize', resize);
   } catch (e) {
