@@ -55,7 +55,7 @@
 .chat-window .thread::-webkit-scrollbar{display:none}
 .chat-window .wa-top{position:absolute;top:0;left:0;width:100%;transform:none}
 .chat-window .wa-input{position:absolute;bottom:0;left:0;width:100%;transform:none}
-.chat-window .tutorial-coach{position:absolute;left:12px;right:12px;bottom:calc(var(--input-h) + 10px);width:auto;transform:none}
+.chat-window .tutorial-coach{position:absolute;left:auto;right:12px;bottom:calc(var(--input-h) + 10px);width:min(220px,60%);padding:12px 13px 14px;border-radius:10px;transform:none}
 .chat-window .tutorial-coach:not([data-step="1"]){top:calc(var(--top-h) + 8px);bottom:auto}
 .chat-window .call{position:fixed;inset:0;left:0;width:100%;transform:none}
 /* The call is portaled to body so Safari cannot contain it inside the
@@ -83,3 +83,20 @@
 @media (prefers-reduced-motion: reduce){
   .chat-window .wa-top,.chat-window .wa-input{transition:none}
 }
+.chat-window .tutorial-coach{background:rgba(16,29,38,.96);border:1px solid rgba(255,255,255,.14);color:#eaf0ff;overflow:visible;animation:coach-pop-in .28s cubic-bezier(.2,.9,.3,1.3)}
+.chat-window .tutorial-coach>span{color:#7de3a8}
+.chat-window .tutorial-coach>strong{color:#fff;font-size:.88rem}
+.chat-window .tutorial-coach>p{color:#c7d3e8;font-size:.75rem}
+.chat-window .tutorial-coach::after{display:none}
+@keyframes coach-pop-in{from{opacity:0;transform:translateY(8px) scale(.98)}to{opacity:1}}
+.chat-window .wa[data-target="gotit"] .quick button{outline:2px solid #027eb5;outline-offset:2px}
+.chat-window .wa[data-target="recall"] [data-recall-continue]{outline:2px solid #ffd9a8;outline-offset:2px;animation:gatepulse 1.9s ease-in-out infinite}
+.chat-window .wa[data-target="quiz"] .opts button{outline:2px solid #027eb5;outline-offset:-2px}
+.chat-window .wa[data-target="sos"] .sos-brownie{outline:3px solid #00a884;outline-offset:3px;animation:micpulse 2s ease-in-out infinite}
+/* safety quiz fixes: one ring on the card, hairline dividers, timestamp in flow */
+.chat-window .wa[data-target="quiz"] .opts button{outline:none}
+.chat-window .wa[data-target="quiz"] .quiz-card{box-shadow:0 0 0 2px #027eb5,0 1px 1px rgba(0,0,0,.1)}
+.chat-window .quiz-card{padding-bottom:0}
+.chat-window .quiz-card .meta{position:static;float:none;display:flex;justify-content:flex-end;padding:6px 10px 8px;margin:0}
+.chat-window .opts{border-top:1px solid rgba(0,0,0,.1)}
+.chat-window .opts button{min-height:48px;padding-top:11px;padding-bottom:11px;border-bottom:1px solid rgba(0,0,0,.1)}

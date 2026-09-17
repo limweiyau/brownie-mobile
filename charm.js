@@ -33,10 +33,10 @@ if (stage && host) {
     camera.position.set(0, .7, 5.4);
     camera.lookAt(0, 0, 0);
 
-    scene.add(new THREE.AmbientLight(0xffffff, .55));
-    const key = new THREE.DirectionalLight(0xfff1e0, 1.15); key.position.set(4, 6, 6); scene.add(key);
-    const rim = new THREE.DirectionalLight(0x6d8bff, .9); rim.position.set(-6, 3, -5); scene.add(rim);
-    const fill = new THREE.DirectionalLight(0xff8a5c, .4); fill.position.set(2, -3, 4); scene.add(fill);
+    scene.add(new THREE.AmbientLight(0xffffff, .85));
+    const key = new THREE.DirectionalLight(0xfff1e0, 1.6); key.position.set(4, 6, 6); scene.add(key);
+    const rim = new THREE.DirectionalLight(0x6d8bff, 1.3); rim.position.set(-6, 3, -5); scene.add(rim);
+    const fill = new THREE.DirectionalLight(0xff8a5c, .65); fill.position.set(2, -3, 4); scene.add(fill);
 
     const group = new THREE.Group();
     group.rotation.y = Math.PI;

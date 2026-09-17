@@ -21,19 +21,51 @@
     meters.forEach((m, i) => m.classList.toggle('active', i === n));
   };
   const range = () => Math.max(1, experience.offsetHeight - innerHeight);
+  const LOCK_AT = .18;
   let ticking = false;
   const onScroll = () => {
     ticking = false;
     const p = Math.max(0, Math.min(1, (scrollY - experience.offsetTop) / range()));
-    chatWindow.style.setProperty('--expand', Math.min(1, p / .18).toFixed(3));
-    experienceFrame.classList.toggle('chat-full', p >= .24);
+    chatWindow.style.setProperty('--expand', Math.min(1, p / .12).toFixed(3));
+    experienceFrame.classList.toggle('chat-full', p >= LOCK_AT);
   };
   const requestScroll = () => {
     if (ticking) return;
     ticking = true;
     requestAnimationFrame(onScroll);
   };
-  addEventListener('scroll', requestScroll, { passive: true });
+  // snap-on-release, modeled on GSAP ScrollTrigger snap: after scrolling
+  // stops, ease to the nearest of [entry, locked] so the frame lands
+  // decisively instead of hovering half-expanded. Apple-style pinned
+  // stories do the same: two resting states, no in-between hover.
+  let snapTimer = null;
+  let snapping = false;
+  const scheduleSnap = () => {
+    if (reduced || snapping) return;
+    if (document.documentElement.classList.contains('in-call')) return;
+    if (document.body.classList.contains('in-call')) return;
+    if (experience.classList.contains('complete')) return;
+    if (snapTimer) clearTimeout(snapTimer);
+    snapTimer = setTimeout(() => {
+      snapTimer = null;
+      if (snapping) return;
+      const top = experience.offsetTop;
+      const r = range();
+      const entryY = top + 2;
+      const lockY = top + r * .34;
+      const y = scrollY;
+      if (y < top - innerHeight * .5 || y > top + r) return;
+      const target = Math.abs(y - lockY) < Math.abs(y - entryY) ? lockY : entryY;
+      const dist = Math.abs(target - y);
+      if (dist < 8 || dist > innerHeight * .5) return;
+      snapping = true;
+      window.scrollTo({ top: Math.round(target), behavior: 'smooth' });
+      setTimeout(() => { snapping = false; }, 750);
+    }, 140);
+  };
+  addEventListener('scroll', () => { requestScroll(); scheduleSnap(); }, { passive: true });
+  addEventListener('wheel', () => { snapping = false; }, { passive: true });
+  addEventListener('touchmove', () => { snapping = false; }, { passive: true });
   addEventListener('resize', requestScroll);
   onScroll();
   setStep(0);
@@ -285,7 +317,49 @@
     const height = Math.max(window.innerHeight, Math.min(experience.offsetHeight, visibleEnd));
     experience.style.setProperty('--complete-height', `${Math.ceil(height)}px`);
     experience.classList.add('complete');
+    showScrollCue();
   };
+  // bottom pill inviting the visitor down. appears once the demo ends,
+  // hides on first real scroll past or after 7s. more appropriate than
+  // auto-scrolling the whole page: the visitor stays in control.
+  let cueEl = null;
+  let cueTimer = null;
+  const showScrollCue = () => {
+    if (cueEl || reduced) { nudgeDown(); return; }
+    cueEl = document.createElement('button');
+    cueEl.type = 'button';
+    cueEl.className = 'scroll-cue';
+    cueEl.innerHTML = '<span>More below</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 16l-6-6 1.4-1.4L12 13.2l4.6-4.6L18 10z"/></svg>';
+    cueEl.addEventListener('click', () => {
+      hideScrollCue();
+      const next = document.getElementById('architecture');
+      if (next) next.scrollIntoView({ behavior: reduced ? 'auto' : 'smooth' });
+    });
+    experienceFrame.appendChild(cueEl);
+    requestAnimationFrame(() => cueEl.classList.add('show'));
+    cueTimer = setTimeout(hideScrollCue, 7000);
+    // pause ~1s so the end-of-demo message lands, then a small nudge
+    // peeks the next section — only if the visitor hasn't moved.
+    const heldY = window.scrollY;
+    setTimeout(() => { if (window.scrollY === heldY) nudgeDown(); }, 1100);
+  };
+  const nudgeDown = () => {
+    if (reduced) return;
+    window.scrollBy({ top: 90, behavior: 'smooth' });
+  };
+  const hideScrollCue = () => {
+    if (cueTimer) { clearTimeout(cueTimer); cueTimer = null; }
+    if (!cueEl) return;
+    cueEl.classList.remove('show');
+    const el = cueEl;
+    cueEl = null;
+    setTimeout(() => el.remove(), 400);
+  };
+  addEventListener('scroll', () => {
+    if (!cueEl) return;
+    const past = window.scrollY > experience.offsetTop + experience.offsetHeight - window.innerHeight + 40;
+    if (past) hideScrollCue();
+  }, { passive: true });
   const outro = () => {
     if (outroed) return;
     outroed = true;
@@ -337,14 +411,4 @@
 
   if (canAnim) chatWindow.classList.add('fx');
   window.__brownieReady = true;
-
-  /* ══ the rest of the page ══ */
-  const quizAnswer = document.querySelector('.quiz-answer');
-  document.querySelectorAll('.quiz-options button').forEach((button) => button.addEventListener('click', () => {
-    document.querySelectorAll('.quiz-options button').forEach((item) => item.classList.remove('correct', 'wrong'));
-    const correct = button.dataset.correct === 'true';
-    button.classList.add(correct ? 'correct' : 'wrong');
-    if (quizAnswer) quizAnswer.innerHTML = correct ? '<strong>Correct!</strong> Visit us at the SMU booth and meet Brownie.' : '<strong>Try again.</strong> Brownie is waiting at the SMU booth.';
-  }));
-
 })();
