@@ -1,4 +1,5 @@
 import * as THREE from 'three';
+import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { STLLoader } from 'three/addons/loaders/STLLoader.js';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 
@@ -84,20 +85,26 @@ if (stage && host) {
     new ResizeObserver(resize).observe(host);
     addEventListener('resize', resize);
 
-    new STLLoader().load('assets/otter-charm.stl', (geo) => {
+    const place = (obj) => {
       if (settled) return;
       settled = true;
-      const mesh = new THREE.Mesh(geo, new THREE.MeshStandardMaterial({ color: 0xb06a3c, roughness: .55, metalness: .06 }));
-      mesh.rotation.x = -Math.PI / 2;   // the STL is authored lying on its back
-      group.add(mesh);
-      const size = new THREE.Box3().setFromObject(mesh).getSize(new THREE.Vector3()).length();
-      mesh.scale.setScalar(2.65 / size);
-      const box = new THREE.Box3().setFromObject(mesh);
-      mesh.position.copy(box.getCenter(new THREE.Vector3())).negate();
+      obj.rotation.x = -Math.PI / 2;   // the model is authored lying on its back
+      group.add(obj);
+      const size = new THREE.Box3().setFromObject(obj).getSize(new THREE.Vector3()).length();
+      obj.scale.setScalar(2.65 / size);
+      const box = new THREE.Box3().setFromObject(obj);
+      obj.position.copy(box.getCenter(new THREE.Vector3())).negate();
       stage.classList.add('ready');
       resize();
       onScreen(true);
-    }, undefined, () => fail('The charm could not be loaded.'));
+    };
+
+    new GLTFLoader().load('assets/otter-charm.glb', (gltf) => {
+      place(gltf.scene);
+    }, undefined, () => new STLLoader().load('assets/otter-charm.stl', (geo) => {
+      const mesh = new THREE.Mesh(geo, new THREE.MeshStandardMaterial({ color: 0xb06a3c, roughness: .55, metalness: .06 }));
+      place(mesh);
+    }, undefined, () => fail('The charm could not be loaded.')));
     setTimeout(() => fail('The 3D charm is taking too long to load.'), 10000);
   }
 }
