@@ -39,7 +39,7 @@
 .charm-copy>p{margin:18px 0 0;max-width:46ch;color:#526383;line-height:1.5}
 .charm-hint{display:flex;align-items:center;gap:10px;font-size:.74rem;font-weight:850;letter-spacing:.14em;text-transform:uppercase;color:var(--blue)}
 .charm-hint i{width:9px;height:9px;border-radius:50%;background:var(--blue);animation:arch-pulse 1.6s ease-in-out infinite}
-.charm-stage{position:relative;height:min(70vh,560px);border-radius:28px;background:radial-gradient(60% 60% at 50% 42%,#fff,#e6efff 60%,#d7e5ff);border:1px solid #d3e0f7;box-shadow:0 30px 70px #17366e1f;overflow:hidden;touch-action:pan-y}
+.charm-stage{position:relative;height:min(70vh,560px);border-radius:28px;background:radial-gradient(60% 60% at 50% 42%,#fff,#e6efff 60%,#d7e5ff);border:1px solid #d3e0f7;box-shadow:0 30px 70px #17366e1f;overflow:hidden;touch-action:none}
 #charm3d{position:absolute;inset:0;cursor:grab}
 #charm3d:active{cursor:grabbing}
 #charm3d canvas{display:block;width:100%!important;height:100%!important}
