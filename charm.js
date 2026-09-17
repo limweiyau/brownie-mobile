@@ -51,7 +51,7 @@ if (stage && host) {
     controls.minDistance = 3.4;
     controls.maxDistance = 9;
     controls.autoRotate = !reduced;
-    controls.autoRotateSpeed = 1.5;
+    controls.autoRotateSpeed = 0.7;
     // dragging the charm must not scroll the page
     renderer.domElement.style.touchAction = 'none';
 
@@ -64,7 +64,7 @@ if (stage && host) {
     });
     controls.addEventListener('end', () => {
       if (idle) clearTimeout(idle);
-      idle = setTimeout(resume, 8000);
+      idle = setTimeout(resume, 12000);
     });
 
     const resize = () => {
